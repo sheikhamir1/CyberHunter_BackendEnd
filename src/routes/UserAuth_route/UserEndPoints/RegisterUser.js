@@ -61,11 +61,4 @@ Router.post("/register", registerValidator, async (req, res) => {
   }
 });
 
-//
-async function clearDatabase() {
-  const result = await RegisteredUser.deleteOne({});
-  console.log(result);
-}
-// clearDatabase();
-
 module.exports = Router;
