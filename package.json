@@ -1,0 +1,22 @@
+{
+  "name": "cyberhunter",
+  "version": "1.0.0",
+  "description": "this is my web app cyberHunter BackEnd ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sheikhamir1/CyberHunter_BackendEnd.git"
+  },
+  "keywords": [
+    "backend"
+  ],
+  "author": "amir sohail sheikh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sheikhamir1/CyberHunter_BackendEnd/issues"
+  },
+  "homepage": "https://github.com/sheikhamir1/CyberHunter_BackendEnd#readme"
+}
