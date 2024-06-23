@@ -36,7 +36,10 @@ app.use(
 
 // // blog authentication routes
 // app.use("/api/blog", require("./Routes/blogAuth/blog"));
-// app.use("/api/blog", require("./Routes/blogAuth/createBlog"));
+app.use(
+  "/api/blog",
+  require("./src/routes/BlogAuth_Route/BlogEndPoint/CreateBlog_Route")
+);
 // app.use("/api/blog", require("./Routes/blogAuth/updateBlog"));
 // app.use("/api/blog", require("./Routes/blogAuth/deleteBlog"));
 // app.use("/api/blog", require("./Routes/blogAuth/PublicBlog"));
