@@ -51,7 +51,10 @@ app.use(
   "/api/blog",
   require("./src/routes/BlogAuth_Route/BlogEndPoint/DeleteBlog_Route")
 );
-// app.use("/api/blog", require("./Routes/blogAuth/PublicBlog"));
+app.use(
+  "/api/blog",
+  require("./src/routes/BlogAuth_Route/BlogEndPoint/FetchAllPublicBlogs_Route")
+);
 // app.use("/api/blog", require("./Routes/blogAuth/PrivetBLog"));
 
 // // like and comment routes
