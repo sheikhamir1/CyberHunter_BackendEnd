@@ -10,8 +10,8 @@ router.get("/fetchblogs", CheckIfUserLoggedIn, async (req, res) => {
 
     const blogs = await createBlog
       .find({ author: userId.id })
-      .populate("author", "fullName")
-      .populate("Likes");
+      .populate("author", "fullName");
+    // .populate("Likes");
 
     const blogsWithLikeCounts = blogs.map((blog) => ({
       ...blog._doc, // Spread existing blog properties
