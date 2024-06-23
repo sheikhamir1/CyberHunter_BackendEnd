@@ -43,7 +43,10 @@ app.use(
   "/api/blog",
   require("./src/routes/BlogAuth_Route/BlogEndPoint/CreateBlog_Route")
 );
-// app.use("/api/blog", require("./Routes/blogAuth/updateBlog"));
+app.use(
+  "/api/blog",
+  require("./src/routes/BlogAuth_Route/BlogEndPoint/UpdateBlog_route")
+);
 // app.use("/api/blog", require("./Routes/blogAuth/deleteBlog"));
 // app.use("/api/blog", require("./Routes/blogAuth/PublicBlog"));
 // app.use("/api/blog", require("./Routes/blogAuth/PrivetBLog"));
