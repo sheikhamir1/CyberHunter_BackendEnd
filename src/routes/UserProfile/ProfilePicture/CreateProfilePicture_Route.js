@@ -21,7 +21,6 @@ router.post(
   async (req, res) => {
     // console.log("Request file:", req.file);
     // console.log("this is userId", userId);
-    // console.log("this is req.file", req.file);
 
     const userId = req.user.user;
 
