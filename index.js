@@ -6,7 +6,6 @@ const mongoDbConnect = require("./src/mongodb/ConnectToMongoDb");
 const cors = require("cors");
 mongoDbConnect();
 
-// const port = 3000;
 const port = process.env.PORT || 4000;
 app.use(cors());
 
@@ -17,7 +16,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // // user authentication routes
-// app.use("/api/auth", require("./Routes/userAuth/Login"));
+app.use(
+  "/api/auth",
+  require("./src/routes/UserAuth_route/UserEndPoints/LoginUser")
+);
 app.use(
   "/api/auth",
   require("./src/routes/UserAuth_route/UserEndPoints/RegisterUser")
