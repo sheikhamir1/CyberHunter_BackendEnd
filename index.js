@@ -25,13 +25,19 @@ app.use(
   require("./src/routes/UserAuth_route/UserEndPoints/RegisterUser")
 );
 // app.use("/api/auth", require("./Routes/userAuth/CheckIfUserAuth"));
-// app.use("/api/user", require("./Routes/userAuth/userProfile"));
-// app.use("/api/user", require("./Routes/userAuth/UserProfilePicture"));
-// app.use("/api/user", require("./Routes/userAuth/GetUserProfile"));
+app.use(
+  "/api/user",
+  require("./src/routes/UserProfile/CreateNewProfile_Route")
+);
+app.use("/api/user", require("./src/routes/UserProfile/UpdateProfile_Route"));
+app.use("/api/user", require("./src/routes/UserProfile/FetchProfile_Route"));
+app.use(
+  "/api/user",
+  require("./src/routes/UserProfile/ProfilePicture/CreateProfilePicture_Route")
+);
 // app.use("/api/user", require("./Routes/userAuth/GetEmail"));
 // app.use("/api/user", require("./Routes/userAuth/UpdateEmail"));
 // app.use("/api/user", require("./Routes/userAuth/ResetPassword"));
-// app.use("/api/user", require("./Routes/userAuth/UserProfileUpdate"));
 // app.use("/api/user", require("./Routes/userAuth/UserProfilePictureUpdate"));
 
 // // blog authentication routes
