@@ -31,10 +31,7 @@ app.use(
 );
 app.use("/api/user", require("./src/routes/UserProfile/UpdateProfile_Route"));
 app.use("/api/user", require("./src/routes/UserProfile/FetchProfile_Route"));
-app.use(
-  "/api/user",
-  require("./src/routes/UserProfile/ProfilePicture/CreateProfilePicture_Route")
-);
+
 // app.use("/api/user", require("./Routes/userAuth/GetEmail"));
 // app.use("/api/user", require("./Routes/userAuth/UpdateEmail"));
 // app.use("/api/user", require("./Routes/userAuth/ResetPassword"));

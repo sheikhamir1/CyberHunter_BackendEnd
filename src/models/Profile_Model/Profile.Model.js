@@ -19,7 +19,7 @@ const ProfileSchema = new mongoose.Schema(
     country: {
       type: String,
     },
-    imageCaption: {
+    url: {
       type: String,
     },
     author: {
