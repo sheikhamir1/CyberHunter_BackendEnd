@@ -2,7 +2,6 @@ const express = require("express");
 const Router = express.Router();
 const CheckIfUserLoggedIn = require("../../middleware/CheckUserLogin");
 const Profile = require("../../models/Profile_Model/Profile.Model");
-// testing
 const { v2: cloudinary } = require("cloudinary");
 const multer = require("multer");
 
@@ -25,6 +24,7 @@ Router.post(
 
     // console.log("this is req file", req.file);
     const userId = req.user.user;
+    const { username, bio, age, city, country } = req.body;
     const existingProfileImage = await Profile.findOne({
       author: userId.id,
     });
@@ -35,7 +35,6 @@ Router.post(
         .json({ success: false, msg: "Profile image already exists" });
     }
 
-    const { username, bio, age, city, country } = req.body;
     // console.log("this is author in profile", userId);
 
     if (!userId) {
