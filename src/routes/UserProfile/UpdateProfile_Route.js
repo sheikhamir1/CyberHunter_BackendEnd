@@ -18,15 +18,16 @@ const upload = multer({ storage });
 Router.put(
   "/profileupdate/:id",
   CheckIfUserLoggedIn,
-  upload.fields([{ name: "file" }]),
+  // upload.fields([{ name: "file" }]),
+  upload.single("file"),
   async (req, res) => {
-    //   console.log("Request Body:", req.body);
     const userId = req.user.user;
     const { username, bio, age, city, country } = req.body;
     //   console.log("this is author in profile", userId);
-    // let updateFields = { username, bio, age, city, country };
+    console.log("Request Body:", req.body);
+
     console.log("this is req file", req.file);
-    console.log("this is req files", req.files);
+    // console.log("this is req files", req.files);
     if (!userId) {
       return res.status(400).json({ success: false, msg: "User not found" });
     }
@@ -36,9 +37,8 @@ Router.put(
       return res.status(400).json({ success: false, msg: "Profile not found" });
     }
 
-    if (req.files && req.files["file"]) {
-      const file = req.files["file"][0];
-
+    if (req.file) {
+      const file = req.file;
       const uploadResult = await new Promise((resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(
           { resource_type: "auto" },
@@ -52,8 +52,7 @@ Router.put(
         );
         uploadStream.end(file.buffer);
       });
-      const imageUrl = uploadResult.secure_url;
-
+      const url = uploadResult.secure_url;
       try {
         const updatedProfile = await Profile.findOneAndUpdate(
           { author: userId.id },
@@ -63,8 +62,9 @@ Router.put(
             age,
             city,
             country,
-            imageUrl,
-          }
+            url,
+          },
+          { new: true }
         );
 
         // console.log("this is updated profile", updatedProfile);
@@ -73,6 +73,28 @@ Router.put(
           success: true,
           msg: "Profile updated successfully",
           // data: updatedProfile,
+        });
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, msg: "Server error" });
+      }
+    } else {
+      // Handle case where there is no file upload
+      try {
+        const updatedProfile = await Profile.findOneAndUpdate(
+          { author: userId.id },
+          {
+            username,
+            bio,
+            age,
+            city,
+            country,
+          },
+          { new: true }
+        );
+        return res.status(200).json({
+          success: true,
+          msg: "Profile updated successfully",
         });
       } catch (error) {
         console.error(error);

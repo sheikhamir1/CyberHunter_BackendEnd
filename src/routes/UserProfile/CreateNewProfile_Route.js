@@ -20,9 +20,10 @@ Router.post(
   CheckIfUserLoggedIn,
   upload.fields([{ name: "file" }]),
   async (req, res) => {
-    // console.log("Request Body:", req.body);
+    console.log("Request Body:", req.body);
 
     // console.log("this is req file", req.file);
+    // console.log("this is req files", req.files);
     const userId = req.user.user;
     const { username, bio, age, city, country } = req.body;
     const existingProfileImage = await Profile.findOne({

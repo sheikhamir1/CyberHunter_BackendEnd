@@ -9,8 +9,6 @@ mongoDbConnect();
 const port = process.env.PORT || 4000;
 app.use(cors());
 
-// app.use("/api/user", require("./Routes/userAuth/GetUserProfilePicture"));
-
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
