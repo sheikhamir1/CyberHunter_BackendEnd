@@ -24,10 +24,9 @@ Router.put(
     const userId = req.user.user;
     const { username, bio, age, city, country } = req.body;
     //   console.log("this is author in profile", userId);
-    console.log("Request Body:", req.body);
+    // console.log("Request Body:", req.body);
 
-    console.log("this is req file", req.file);
-    // console.log("this is req files", req.files);
+    // console.log("this is req file", req.file);
     if (!userId) {
       return res.status(400).json({ success: false, msg: "User not found" });
     }
