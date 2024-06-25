@@ -6,12 +6,12 @@ router.get("/publicblog", async (req, res) => {
   try {
     const publicBlog = await createBlog
       .find({ isPublic: true })
-      .populate("author", "fullName");
-    // .populate("Likes");
+      .populate("author", "fullName")
+      .populate("postLikes");
 
     const publicblogWithCount = publicBlog.map((blog) => ({
       ...blog._doc, // Spread existing blog properties
-      likeCount: blog.Likes.length, // Add likeCount property
+      likeCount: blog.postLikes.length, // Add likeCount property
     }));
 
     res.status(200).json({ success: true, data: publicblogWithCount });

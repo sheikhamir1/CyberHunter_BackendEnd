@@ -62,8 +62,14 @@ app.use(
 );
 
 // // like and comment routes
-// app.use("/api/blog", require("./Routes/like/Like"));
-// app.use("/api/blog", require("./Routes/like/Dislike"));
+app.use(
+  "/api/blog",
+  require("./src/routes/Like_Comment_Share_Route/LikePost_Route")
+);
+app.use(
+  "/api/blog",
+  require("./src/routes/Like_Comment_Share_Route/DislikePost_Route")
+);
 // app.use("/api/blog", require("./Routes/like/Comment"));
 // app.use("/api/blog", require("./Routes/like/GetComments"));
 // app.use("/api/blog", require("./Routes/like/EditComment"));

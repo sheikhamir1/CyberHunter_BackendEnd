@@ -37,10 +37,10 @@ const blogSchema = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    Likes: [
+    postLikes: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Like",
+        ref: "LikePost",
       },
     ],
 
