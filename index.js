@@ -14,7 +14,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // // user authentication routes
-// app.use("/api/auth", require("./Routes/userAuth/CheckIfUserAuth"));
 app.use(
   "/api/auth",
   require("./src/routes/UserAuth_route/UserEndPoints/LoginUser")
@@ -30,8 +29,15 @@ app.use(
 app.use("/api/user", require("./src/routes/UserProfile/UpdateProfile_Route"));
 app.use("/api/user", require("./src/routes/UserProfile/FetchProfile_Route"));
 
-// app.use("/api/user", require("./Routes/userAuth/GetEmail"));
-// app.use("/api/user", require("./Routes/userAuth/UpdateEmail"));
+// update email
+app.use(
+  "/api/user",
+  require("./src/routes/UserProfile/UpdateEmail/UpdateEmail_Route")
+);
+app.use(
+  "/api/user",
+  require("./src/routes/UserProfile/UpdateEmail/FetchEmail_Route")
+);
 
 // // blog authentication routes
 app.use(
