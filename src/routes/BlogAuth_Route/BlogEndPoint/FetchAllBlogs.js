@@ -19,6 +19,7 @@ router.get("/fetchblogs", CheckIfUserLoggedIn, async (req, res) => {
     }));
 
     res.status(200).json({ success: true, data: blogsWithLikeCounts });
+    // console.log("this is blogsWithLikeCounts", blogsWithLikeCounts);
 
     // console.log("this is blogsWithLikeCounts", blogs);
   } catch (error) {
