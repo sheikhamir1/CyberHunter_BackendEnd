@@ -44,10 +44,10 @@ const blogSchema = new mongoose.Schema(
       },
     ],
 
-    Comments: [
+    postComments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Comment",
+        ref: "CommentPost",
       },
     ],
   },

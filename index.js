@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // // user authentication routes
+// app.use("/api/auth", require("./Routes/userAuth/CheckIfUserAuth"));
 app.use(
   "/api/auth",
   require("./src/routes/UserAuth_route/UserEndPoints/LoginUser")
@@ -22,7 +23,6 @@ app.use(
   "/api/auth",
   require("./src/routes/UserAuth_route/UserEndPoints/RegisterUser")
 );
-// app.use("/api/auth", require("./Routes/userAuth/CheckIfUserAuth"));
 app.use(
   "/api/user",
   require("./src/routes/UserProfile/CreateNewProfile_Route")
@@ -32,8 +32,6 @@ app.use("/api/user", require("./src/routes/UserProfile/FetchProfile_Route"));
 
 // app.use("/api/user", require("./Routes/userAuth/GetEmail"));
 // app.use("/api/user", require("./Routes/userAuth/UpdateEmail"));
-// app.use("/api/user", require("./Routes/userAuth/ResetPassword"));
-// app.use("/api/user", require("./Routes/userAuth/UserProfilePictureUpdate"));
 
 // // blog authentication routes
 app.use(
@@ -70,9 +68,22 @@ app.use(
   "/api/blog",
   require("./src/routes/Like_Comment_Share_Route/DislikePost_Route")
 );
-// app.use("/api/blog", require("./Routes/like/Comment"));
-// app.use("/api/blog", require("./Routes/like/GetComments"));
-// app.use("/api/blog", require("./Routes/like/EditComment"));
+app.use(
+  "/api/blog",
+  require("./src/routes/Like_Comment_Share_Route/Comment_Route")
+);
+app.use(
+  "/api/blog",
+  require("./src/routes/Like_Comment_Share_Route/FetchComment_Route")
+);
+app.use(
+  "/api/blog",
+  require("./src/routes/Like_Comment_Share_Route/EditComment_Route")
+);
+app.use(
+  "/api/blog",
+  require("./src/routes/Like_Comment_Share_Route/DeleteComment_Route")
+);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
