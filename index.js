@@ -39,6 +39,17 @@ app.use(
   require("./src/routes/UserProfile/UpdateEmail/FetchEmail_Route")
 );
 
+// reset password
+app.use(
+  "/api/user",
+  require("./src/routes/UserProfile/ResetPassword/ResetPassword_Route")
+);
+
+app.use(
+  "/api/user",
+  require("./src/routes/UserProfile/ResetPassword/ResetPasswordToken_Route")
+);
+
 // // blog authentication routes
 app.use(
   "/api/blog",
@@ -63,6 +74,12 @@ app.use(
 app.use(
   "/api/blog",
   require(".//src/routes/BlogAuth_Route/BlogEndPoint/FetchAllPrivateBlogs_Route")
+);
+
+// Search route
+app.use(
+  "/api/blog",
+  require("./src/routes/BlogAuth_Route/SearchEndPoint/Search_Route")
 );
 
 // // like and comment routes
