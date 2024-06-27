@@ -4,13 +4,13 @@ const RegisteredUser = require("../../../models/UserAuth_Model/RegisteredUser.mo
 const bcrypt = require("bcrypt");
 
 // Route to reset password
-router.post("/reset-password/:token", async (req, res) => {
+router.put("/reset-password/:token", async (req, res) => {
   const { token } = req.params;
   let { password, confirmPassword } = req.body;
 
-  //   console.log("this is token", token);
-  //   console.log("this is password", password);
-  //   console.log("this is confirmPassword", confirmPassword);
+  // console.log("this is token", token);
+  // console.log("this is password", password);
+  // console.log("this is confirmPassword", confirmPassword);
 
   try {
     const user = await RegisteredUser.findOne({
@@ -18,7 +18,7 @@ router.post("/reset-password/:token", async (req, res) => {
       resetPasswordExpires: { $gt: Date.now() },
     });
 
-    // console.log("user", user);
+    console.log("user", user);
 
     if (!user) {
       return res.status(400).json({

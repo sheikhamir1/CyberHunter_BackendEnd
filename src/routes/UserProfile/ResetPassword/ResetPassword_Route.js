@@ -17,6 +17,8 @@ Router.post("/reset-password", async (req, res) => {
   const { email } = req.body;
   const user = await RegisteredUser.findOne({ email });
 
+  // console.log("this is user when sending email", user);
+
   if (!user) {
     return res
       .status(400)
@@ -29,7 +31,7 @@ Router.post("/reset-password", async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour from now
     await user.save();
 
-    const resetURL = `http://localhost:3000/resetpassword/${token}`;
+    const resetURL = `http://localhost:5173/newpassword_comp/${token}`;
 
     const mailOptions = {
       from: process.env.EMAIL,
