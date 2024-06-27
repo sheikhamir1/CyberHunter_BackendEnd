@@ -5,7 +5,47 @@ const { validationResult } = require("express-validator");
 const RegisteredUser = require("../../../models/UserAuth_Model/RegisteredUser.model");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const crypto = require("crypto");
+const nodemailer = require("nodemailer");
 JWT_SECRET_KEY = process.env.JWT_ACCESS_TOKEN;
+
+// Setup Nodemailer transport
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASS,
+  },
+});
+
+const sendVerificationEmail = async (user) => {
+  const token = crypto.randomBytes(20).toString("hex");
+  user.emailVerificationToken = token;
+  user.emailVerificationExpires = Date.now() + 600000; // 10 min from now
+
+  await user.save();
+
+  const verificationURL = `http://localhost:5173/verify_email/${token}`;
+  const mailOptions = {
+    from: process.env.EMAIL,
+    to: user.email,
+    subject: "Verify Your Email Address",
+    html: `<h1>Hi ${user.fullName},</h1>
+           <p>Thank you for registering on Cyber hunter!</p>
+           <p>Please verify your email address by clicking the link below:</p>
+           <a href=${verificationURL}>${verificationURL}</a>
+           <p>If you did not create an account, please ignore this email.</p>
+           <p>Best regards,<br>Cyber hunter Team</p>`,
+  };
+
+  transporter.sendMail(mailOptions, (err, info) => {
+    if (err) {
+      console.log("Error sending email: " + err);
+    } else {
+      console.log("Email sent: " + info.response);
+    }
+  });
+};
 
 Router.post("/register", registerValidator, async (req, res) => {
   const errors = validationResult(req);
@@ -37,6 +77,7 @@ Router.post("/register", registerValidator, async (req, res) => {
     });
     // console.log("this is new user", newUser);
     await newUser.save();
+    await sendVerificationEmail(newUser);
 
     const JWT_Token = JWT_SECRET_KEY;
     // console.log("this is secretkey", JWT_Token);
@@ -49,7 +90,7 @@ Router.post("/register", registerValidator, async (req, res) => {
     const authToken = jwt.sign(payload, JWT_Token, {
       expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRY,
     });
-    // console.log("auth-token", authToken);
+    console.log("auth-token", authToken);
     res.status(200).json({
       success: true,
       authToken,

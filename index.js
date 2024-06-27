@@ -29,6 +29,16 @@ app.use(
 app.use("/api/user", require("./src/routes/UserProfile/UpdateProfile_Route"));
 app.use("/api/user", require("./src/routes/UserProfile/FetchProfile_Route"));
 
+app.use(
+  "/api/user",
+  require("./src/routes/UserAuth_route/UserEndPoints/ResendToken_Route")
+);
+
+app.use(
+  "/api/user",
+  require("./src/routes/UserAuth_route/UserEndPoints/VerifyUser_Route")
+);
+
 // update email
 app.use(
   "/api/user",
