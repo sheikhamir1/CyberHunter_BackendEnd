@@ -36,6 +36,16 @@ Router.put(
       return res.status(400).json({ success: false, msg: "Profile not found" });
     }
 
+    const existsUsername = await Profile.findOne({ username });
+    if (existsUsername) {
+      return res
+        .status(400)
+        .json({
+          success: false,
+          msg: "Username already exists , and username must be unique",
+        });
+    }
+
     if (req.file) {
       const file = req.file;
       const uploadResult = await new Promise((resolve, reject) => {
