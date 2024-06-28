@@ -7,7 +7,6 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 const nodemailer = require("nodemailer");
-JWT_SECRET_KEY = process.env.JWT_ACCESS_TOKEN;
 
 // Setup Nodemailer transport
 const transporter = nodemailer.createTransport({
@@ -79,22 +78,9 @@ Router.post("/register", registerValidator, async (req, res) => {
     await newUser.save();
     await sendVerificationEmail(newUser);
 
-    const JWT_Token = JWT_SECRET_KEY;
-    // console.log("this is secretkey", JWT_Token);
-    const payload = {
-      user: {
-        id: newUser._id,
-        email: newUser.email,
-      },
-    };
-    const authToken = jwt.sign(payload, JWT_Token, {
-      expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRY,
-    });
-    console.log("auth-token", authToken);
     res.status(200).json({
       success: true,
-      authToken,
-      message: "user register successfully",
+      message: "user register successfully please verify your email to login",
     });
   } catch (error) {
     console.error(error);

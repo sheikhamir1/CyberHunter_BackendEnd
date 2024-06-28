@@ -23,12 +23,10 @@ Router.post("/login", loginValidator, async (req, res) => {
     }
 
     if (!existingUsers.isVerified) {
-      return res
-        .status(403)
-        .json({
-          success: false,
-          msg: "Email not verified please verify to login",
-        });
+      return res.status(403).json({
+        success: false,
+        message: "Email not verified please verify to login",
+      });
     }
 
     // console.log("Plaintext Password:", password);

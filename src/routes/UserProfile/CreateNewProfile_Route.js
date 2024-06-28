@@ -38,13 +38,6 @@ Router.post(
 
     // console.log("this is author in profile", userId);
 
-    if (existingProfileImage.username === req.body.username) {
-      return res.status(400).json({
-        success: false,
-        msg: "Username already exists , and username must be unique",
-      });
-    }
-
     if (!userId) {
       return res.status(400).json({ success: false, msg: "User not found" });
     }
