@@ -82,6 +82,10 @@ app.use(
   "/api/blog",
   require(".//src/routes/BlogAuth_Route/BlogEndPoint/FetchAllPrivateBlogs_Route")
 );
+app.use(
+  "/api/blog",
+  require("./src/routes/BlogAuth_Route/BlogEndPoint/FetchByCtegory_Route")
+);
 
 // // Search route ( search by title, content, tags, categories)
 app.use(
