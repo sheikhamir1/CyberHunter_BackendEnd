@@ -13,7 +13,7 @@ app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-// // user authentication routes
+// // user authentication routes (register, login)
 app.use(
   "/api/auth",
   require("./src/routes/UserAuth_route/UserEndPoints/LoginUser")
@@ -22,24 +22,22 @@ app.use(
   "/api/auth",
   require("./src/routes/UserAuth_route/UserEndPoints/RegisterUser")
 );
+
+// // user profile routes (create, update, fetch , verify email, resend token , updated email, fetch email)
 app.use(
   "/api/user",
   require("./src/routes/UserProfile/CreateNewProfile_Route")
 );
 app.use("/api/user", require("./src/routes/UserProfile/UpdateProfile_Route"));
 app.use("/api/user", require("./src/routes/UserProfile/FetchProfile_Route"));
-
 app.use(
   "/api/user",
   require("./src/routes/UserAuth_route/UserEndPoints/ResendToken_Route")
 );
-
 app.use(
   "/api/user",
   require("./src/routes/UserAuth_route/UserEndPoints/VerifyUser_Route")
 );
-
-// update email
 app.use(
   "/api/user",
   require("./src/routes/UserProfile/UpdateEmail/UpdateEmail_Route")
@@ -49,18 +47,17 @@ app.use(
   require("./src/routes/UserProfile/UpdateEmail/FetchEmail_Route")
 );
 
-// reset password
+// //reset password routes (reset password, reset password token)
 app.use(
   "/api/user",
   require("./src/routes/UserProfile/ResetPassword/ResetPassword_Route")
 );
-
 app.use(
   "/api/user",
   require("./src/routes/UserProfile/ResetPassword/ResetPasswordToken_Route")
 );
 
-// // blog authentication routes
+// // blog authentication routes (create, update, fetch , delete, fetch all public, fetch all private)
 app.use(
   "/api/blog",
   require("./src/routes/BlogAuth_Route/BlogEndPoint/FetchAllBlogs")
@@ -86,13 +83,13 @@ app.use(
   require(".//src/routes/BlogAuth_Route/BlogEndPoint/FetchAllPrivateBlogs_Route")
 );
 
-// Search route
+// // Search route ( search by title, content, tags, categories)
 app.use(
   "/api/blog",
   require("./src/routes/BlogAuth_Route/SearchEndPoint/Search_Route")
 );
 
-// // like and comment routes
+// // like and comment routes (like, dislike, comment, fetch comment, edit comment, delete comment)
 app.use(
   "/api/blog",
   require("./src/routes/Like_Comment_Share_Route/LikePost_Route")
