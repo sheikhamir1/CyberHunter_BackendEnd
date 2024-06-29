@@ -8,7 +8,12 @@ mongoDbConnect();
 
 // set .en file to base url
 const port = process.env.PORT || 4000;
-app.use(cors());
+
+const corsConfig = {
+  origin: true,
+  credentials: true,
+};
+app.use(cors(corsConfig));
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ extended: true }));
