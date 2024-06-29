@@ -21,7 +21,7 @@ const sendVerificationEmail = async (user) => {
 
   await user.save();
 
-  const verificationURL = `http://localhost:5173/verify_email/${token}`;
+  const verificationURL = `https://cyberhunter-six.vercel.app/verify_email/${token}`;
   const mailOptions = {
     from: process.env.EMAIL,
     to: user.email,

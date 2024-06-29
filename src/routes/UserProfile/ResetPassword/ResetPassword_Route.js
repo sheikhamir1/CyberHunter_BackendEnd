@@ -31,7 +31,7 @@ Router.post("/reset-password", async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour from now
     await user.save();
 
-    const resetURL = `http://localhost:5173/newpassword_comp/${token}`;
+    const resetURL = `https://cyberhunter-six.vercel.app/newpassword_comp/${token}`;
 
     const mailOptions = {
       from: process.env.EMAIL,

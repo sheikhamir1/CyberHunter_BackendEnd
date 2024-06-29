@@ -6,7 +6,6 @@ const mongoDbConnect = require("./src/mongodb/ConnectToMongoDb");
 const cors = require("cors");
 mongoDbConnect();
 
-// set .en file to base url
 const port = process.env.PORT || 4000;
 
 const corsConfig = {
