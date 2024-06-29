@@ -12,7 +12,9 @@ const port = process.env.PORT || 4000;
 const corsConfig = {
   origin: true,
   credentials: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
 };
+app.options("*", cors(corsConfig));
 app.use(cors(corsConfig));
 
 app.use(express.json({ limit: "50mb" }));
