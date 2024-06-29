@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const mongoDbConnect = async () => {
   try {
     const connectionInstance = await mongoose.connect(
-      `${process.env.MONGODB_URL}/cyberhunter`
+      `${process.env.MONGODB_URL}`
+      // `${process.env.MONGODB_URL}/cyberhunter`
     );
     console.log(`MongoDB connected on ${connectionInstance.connection.host}`);
     // console.log(`MongoDB connected on ${connectionInstance}`);
