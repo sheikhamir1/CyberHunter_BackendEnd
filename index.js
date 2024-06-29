@@ -128,8 +128,8 @@ app.use(
 );
 
 // testing route
-app.get("/home", (req, res) => {
-  res.send("maybe deployed!");
+app.get("/", (req, res) => {
+  res.send("backend deployed!");
 });
 
 app.listen(port, () => {
