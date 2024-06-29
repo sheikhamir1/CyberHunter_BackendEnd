@@ -119,7 +119,7 @@ app.use(
   require("./src/routes/Like_Comment_Share_Route/DeleteComment_Route")
 );
 
-app.get("/", (req, res) => {
+app.get("/home", (req, res) => {
   res.send("maybe deployed!");
 });
 
