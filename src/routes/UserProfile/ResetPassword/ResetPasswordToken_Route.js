@@ -18,7 +18,7 @@ router.put("/reset-password/:token", async (req, res) => {
       resetPasswordExpires: { $gt: Date.now() },
     });
 
-    console.log("user", user);
+    // console.log("user", user);
 
     if (!user) {
       return res.status(400).json({

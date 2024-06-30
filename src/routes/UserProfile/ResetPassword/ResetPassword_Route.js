@@ -31,14 +31,14 @@ Router.post("/reset-password", async (req, res) => {
     user.resetPasswordExpires = Date.now() + 3600000; // 1 hour from now
     await user.save();
 
-    const resetURL = `https://cyberhunter-six.vercel.app/newpassword_comp/${token}`;
+    const resetURL = `${process.env.BASE_URL}/newpassword_comp/${token}`;
 
     const mailOptions = {
       from: process.env.EMAIL,
       to: user.email,
       subject: "Password Reset Request",
       html: `
-      <h1>You have requested a password reset</h1>
+      <h1> hello ${user.fullName}, You have requested a password reset</h1>
     <p>Please click on the link below to reset your password:</p>
     <a href="${resetURL}" clicktracking="off">${resetURL}</a>
     <p>If you did not request this, please ignore this email and your password will remain unchanged.</p>

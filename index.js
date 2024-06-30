@@ -87,7 +87,7 @@ app.use(
 );
 app.use(
   "/api/blog",
-  require(".//src/routes/BlogAuth_Route/BlogEndPoint/FetchAllPrivateBlogs_Route")
+  require("./src/routes/BlogAuth_Route/BlogEndPoint/FetchAllPrivateBlogs_Route")
 );
 app.use(
   "/api/blog",

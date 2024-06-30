@@ -14,6 +14,8 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// console.log("this is transporter", transporter);
+
 const sendVerificationEmail = async (user) => {
   const token = crypto.randomBytes(20).toString("hex");
   user.emailVerificationToken = token;
@@ -21,7 +23,7 @@ const sendVerificationEmail = async (user) => {
 
   await user.save();
 
-  const verificationURL = `https://cyberhunter-six.vercel.app/verify_email/${token}`;
+  const verificationURL = `${process.env.BASE_URL}/verify_email/${token}`;
   const mailOptions = {
     from: process.env.EMAIL,
     to: user.email,
@@ -33,6 +35,8 @@ const sendVerificationEmail = async (user) => {
            <p>If you did not create an account, please ignore this email.</p>
            <p>Best regards,<br>Cyber hunter Team</p>`,
   };
+
+  console.log("this is mailOptions", mailOptions);
 
   transporter.sendMail(mailOptions, (err, info) => {
     if (err) {

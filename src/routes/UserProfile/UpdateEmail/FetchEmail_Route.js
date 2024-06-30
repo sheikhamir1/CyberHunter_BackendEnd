@@ -7,10 +7,11 @@ Router.get("/fetchemail", CheckIfUserLoggedIn, async (req, res) => {
   try {
     const userId = req.user.user;
     // console.log("this is userId", userId);
-    // const email = await userId.email;
+
     const LoginDetails = await RegisteredUser.findOne({
       _id: userId.id,
     }).select("-password -confirmPassword -date -createdAt -updatedAt");
+    // console.log("this is LoginDetails", LoginDetails);
     res.status(200).json({ success: true, LoginDetails });
   } catch (error) {
     console.error(error);
