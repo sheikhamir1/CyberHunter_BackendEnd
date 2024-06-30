@@ -4,6 +4,7 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const mongoDbConnect = require("./src/mongodb/ConnectToMongoDb");
 const cors = require("cors");
+// connect mongodb
 mongoDbConnect();
 
 const port = process.env.PORT || 4000;
