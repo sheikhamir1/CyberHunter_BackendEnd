@@ -4,15 +4,8 @@ const app = express();
 const cookieParser = require("cookie-parser");
 const mongoDbConnect = require("./src/mongodb/ConnectToMongoDb");
 const cors = require("cors");
-import { Client } from "appwrite";
 // connect mongodb
 mongoDbConnect();
-
-const client = new Client();
-
-client
-  .setEndpoint("https://cloud.appwrite.io/v1")
-  .setProject("668329d0001bcf62ab40");
 
 const port = process.env.PORT || 4000;
 
