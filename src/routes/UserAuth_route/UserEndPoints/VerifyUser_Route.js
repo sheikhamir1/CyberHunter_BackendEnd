@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const RegisteredUser = require("../../../models/UserAuth_Model/RegisteredUser.model");
 
-router.get("/Verify_email/:token", async (req, res) => {
+router.get("/verify_email/:token", async (req, res) => {
   const { token } = req.params;
 
   try {
