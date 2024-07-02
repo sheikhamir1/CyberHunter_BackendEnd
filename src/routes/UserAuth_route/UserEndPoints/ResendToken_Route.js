@@ -22,7 +22,7 @@ const sendVerificationEmail = async (user) => {
   user.emailVerificationExpires = Date.now() + 600000; // 10 min from now
 
   await user.save();
-  // sending email
+  // sending email this is the correct way to send email
   const verificationURL = `${process.env.BASE_URL}/verifyemail/${token}`;
   const mailOptions = {
     from: process.env.EMAIL,
