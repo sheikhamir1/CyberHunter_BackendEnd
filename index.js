@@ -127,6 +127,11 @@ app.use(
   require("./src/routes/Like_Comment_Share_Route/DeleteComment_Route")
 );
 
+app.use(
+  "/api/user",
+  require("./src/routes/ContextUs_Route/ContextUs_Route.jsx")
+);
+
 // testing route
 app.get("/", (req, res) => {
   res.send("backend deployed!");
