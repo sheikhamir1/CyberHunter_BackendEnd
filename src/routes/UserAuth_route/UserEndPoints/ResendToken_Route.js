@@ -23,7 +23,7 @@ const sendVerificationEmail = async (user) => {
 
   await user.save();
 
-  const verificationURL = `https://cyberhunter-backendend-1.onrender.com/Verify_email/${token}`;
+  const verificationURL = `${process.env.BASE_URL}/Verify_email/${token}`;
   const mailOptions = {
     from: process.env.EMAIL,
     to: user.email,
